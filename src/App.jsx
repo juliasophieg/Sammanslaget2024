@@ -53,16 +53,17 @@ function App() {
   const [clickedPosition, setClickedPosition] = useState(null);
   const [formData, setFormData] = useState({ title: "", story: "" });
 
-  // Handle map click
+  // Handle map click to place a marker
   function MapClickHandler() {
     useMapEvents({
       click(e) {
         setClickedPosition(e.latlng); // Store the clicked position
       },
     });
-    return null; // This component doesn't render anything visible
+    return null;
   }
 
+  // Handle form submission
   function handleSubmit(event) {
     event.preventDefault();
     if (clickedPosition && formData.title && formData.story) {
@@ -73,34 +74,67 @@ function App() {
       };
       setStories((prevStories) => [...prevStories, newLocation]);
       setFormData({ title: "", story: "" });
-      setClickedPosition(null);
+      setClickedPosition(null); // Clear the position after submission
     }
   }
 
+  // Handle form input changes
   function handleInputChange(event) {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   }
 
   return (
-    <MapContainer
-      center={startingPosition}
-      zoom={13}
-      style={{ height: "100vh", width: "100vw" }}
-    >
-      <h1>Map testing</h1>
+    <div>
+      <MapContainer
+        center={startingPosition}
+        zoom={13}
+        style={{ height: "100vh", width: "100vw" }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
 
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
+        <MapClickHandler />
 
-      <MapClickHandler />
+        {clickedPosition && <Marker position={clickedPosition} />}
+
+        {stories.map((location, index) => (
+          <Marker key={index} position={location.position}>
+            <Popup>
+              <h3>{location.title}</h3>
+              <p>{location.story}</p>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+
+      {/* Form at the bottom of the viewport */}
       {clickedPosition && (
-        <Popup position={clickedPosition}>
+        <section
+          style={{
+            position: "fixed",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-around",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            color: "black",
+            padding: "20px",
+            backgroundColor: "transparent",
+            boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
+            zIndex: 1000,
+          }}
+        >
           <form onSubmit={handleSubmit}>
             <div
-              style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
             >
               <label htmlFor="title">Title:</label>
               <input
@@ -121,17 +155,15 @@ function App() {
               <StoryButton />
             </div>
           </form>
-        </Popup>
+          <div>
+            <StoryButton />
+          </div>
+          <div>
+            <StoryButton />
+          </div>
+        </section>
       )}
-      {stories.map((location, index) => (
-        <Marker key={index} position={location.position}>
-          <Popup>
-            <h3>{location.title}</h3>
-            <p>{location.story}</p>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    </div>
   );
 }
 
