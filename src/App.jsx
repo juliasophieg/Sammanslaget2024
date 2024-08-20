@@ -7,13 +7,10 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import StoryButton from "./components/StoryButton";
 
 function App() {
-  const startingPosition = [57.7067, 11.9373]; //Koordinater
-
-  function addStory(newLocation) {
-    stories.push(newLocation);
-  }
+  const startingPosition = [57.7067, 11.9373]; //Start position
 
   const [stories, setStories] = useState([
     {
@@ -92,6 +89,7 @@ function App() {
       style={{ height: "100vh", width: "100vw" }}
     >
       <h1>Map testing</h1>
+
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -120,11 +118,9 @@ function App() {
                 value={formData.story}
                 onChange={handleInputChange}
               />
-
-              <button type="submit">Submit</button>
+              <StoryButton />
             </div>
           </form>
-          <div>You clicked the map at {clickedPosition.toString()}</div>
         </Popup>
       )}
       {stories.map((location, index) => (
