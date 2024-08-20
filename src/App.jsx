@@ -74,7 +74,7 @@ function App() {
         title: formData.title,
         story: formData.story,
       };
-      addStory(newLocation);
+      setStories((prevStories) => [...prevStories, newLocation]);
       setFormData({ title: "", story: "" });
       setClickedPosition(null);
     }
