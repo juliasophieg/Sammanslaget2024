@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import StoryFooter from "./StoryFooter";
 import { storyArray } from "../../data/stories";
-import {
-  MapContainer,
-  TileLayer,
-  useMapEvents,
-  Marker,
-  Popup,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useMap } from "../hooks/getLocation";
 
 export default function StoryMap() {
   const { position } = useMap();
-  const [formData, setFormData] = useState({ title: "", story: "" });
+  const [formData, setFormData] = useState({
+    title: "",
+    story: "",
+    category: "",
+    author: "",
+    age: "",
+  });
   const [stories, setStories] = useState(storyArray);
 
   console.log("stories:", stories);
