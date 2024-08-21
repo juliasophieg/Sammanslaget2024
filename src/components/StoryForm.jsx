@@ -1,10 +1,9 @@
-import StoryButton from "./StoryButton";
-
 export default function StoryForm({
   formData,
   setFormData,
   setStories,
   currentPosition,
+  setFormToggle,
 }) {
   // Handle form submission
   function handleSubmit(event) {
@@ -20,6 +19,7 @@ export default function StoryForm({
       };
       setStories((prevStories) => [...prevStories, newLocation]);
       setFormData({ title: "", story: "", category: "", author: "", age: "" });
+      setFormToggle(false); // Close window
     } else {
       alert("Please fill in all fields");
     }

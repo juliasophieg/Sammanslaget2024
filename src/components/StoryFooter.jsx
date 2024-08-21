@@ -5,7 +5,6 @@ import StoryForm from "./StoryForm";
 export default function StoryFooter({
   formData,
   setFormData,
-  stories,
   setStories,
   currentPosition,
 }) {
@@ -58,6 +57,7 @@ export default function StoryFooter({
               formData={formData}
               setFormData={setFormData}
               currentPosition={currentPosition}
+              setFormToggle={setFormToggle}
             />
           </div>
         </div>
