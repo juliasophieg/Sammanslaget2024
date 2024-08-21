@@ -17,14 +17,41 @@ export default function StoryMap() {
   const [formData, setFormData] = useState({ title: "", story: "" });
   const [stories, setStories] = useState(storyArray);
 
+  // Log the position
+  console.log("Current Position:", position);
+
+  if (!position) {
+    console.log("No position yet");
+  }
   console.log("stories:", stories);
 
+  // Custom icons for markers
   const currentLocation = new L.Icon({
     iconUrl: "/currentlocation.png",
     iconSize: [38, 38],
     iconAnchor: [19, 45],
     popupAnchor: [0, -45],
   });
+
+  const withinRadius = new L.Icon({
+    iconUrl: "/withinradius.png",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
+
+  const outsideRadius = new L.Icon({
+    iconUrl: "/outsideradius.png",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
+
+  // Function to calculate distance between two points
+  const isWithinRadius = (point, center, radiusInMeters) => {
+    const distance = L.latLng(point).distanceTo(L.latLng(center));
+    return distance <= radiusInMeters;
+  };
 
   return (
     <>
@@ -48,24 +75,36 @@ export default function StoryMap() {
         />
 
         <Marker position={position} icon={currentLocation}>
-          <Popup>
-            Här är du nu: Lat: {position.lat}, Lng: {position.lng}
-          </Popup>
+          <Popup>Det här är du!</Popup>
         </Marker>
 
-        {stories.map((location, index) => (
-          <Marker key={index} position={location.position}>
-            <Popup>
-              <h3>{location.title}</h3>
-              <p>{location.story}</p>
-              <p>{location.category}</p>
-              <div style={{ display: "flex", gap: "3px" }}>
-                <p>{location.author}</p>
-                <p>{location.age}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {/* Display stories with different icons based on distance */}
+        {stories.map((location, index) => {
+          const isNearby = isWithinRadius(location.position, position, 50);
+          return (
+            <Marker
+              key={index}
+              position={location.position}
+              icon={isNearby ? withinRadius : outsideRadius}
+            >
+              <Popup autoPan={false}>
+                {isNearby ? (
+                  <>
+                    <h3>{location.title}</h3>
+                    <p>{location.story}</p>
+                    <p>{location.category}</p>
+                    <div style={{ display: "flex", gap: "3px" }}>
+                      <p>{location.author}</p>
+                      <p>{location.age}</p>
+                    </div>
+                  </>
+                ) : (
+                  <p>Go closer to open this story.</p>
+                )}
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}
