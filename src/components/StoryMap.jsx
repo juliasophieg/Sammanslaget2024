@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import StoryFooter from "./StoryFooter";
 import { storyArray } from "../../data/stories";
-
 import {
   MapContainer,
   TileLayer,
@@ -10,6 +9,7 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 import { useMap } from "../hooks/getLocation";
 
 export default function StoryMap() {
@@ -20,6 +20,13 @@ export default function StoryMap() {
   const [stories, setStories] = useState(storyArray);
 
   console.log("stories:", stories);
+
+  const currentLocation = new L.Icon({
+    iconUrl: "/currentlocation.png",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
 
   // Handle map click to place a marker
   function MapClickHandler() {
@@ -34,7 +41,7 @@ export default function StoryMap() {
     <>
       <MapContainer
         center={position}
-        zoom={13}
+        zoom={14}
         maxZoom={22}
         scrollWheelZoom={true}
         style={{ height: "100vh", width: "100vw" }}
@@ -50,7 +57,8 @@ export default function StoryMap() {
             "pk.eyJ1IjoiaHVnZ2lzaCIsImEiOiJjbTAyMnE5ZjIxeWZ4MmxzaWRkdWF3bWJyIn0.6NjX4MyKkyUFO9OeMRzHZg"
           }
         />
-        <Marker position={position}>
+
+        <Marker position={position} icon={currentLocation}>
           <Popup>
             Här är du nu: Lat: {position.lat}, Lng: {position.lng}
           </Popup>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export const useMap = () => {
   const [position, setPosition] = useState({
-    lat: 57.7069,
+    lat: 57.709,
     lng: 11.9376,
   });
   useEffect(() => {
