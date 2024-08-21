@@ -10,9 +10,10 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useMap } from "../hooks/getLocation";
 
 export default function StoryMap() {
-  const startingPosition = [57.7067, 11.9373]; //Start position
+  const { position } = useMap();
   const [clickedPosition, setClickedPosition] = useState(null);
   const [formData, setFormData] = useState({ title: "", story: "" });
 
@@ -32,9 +33,10 @@ export default function StoryMap() {
   return (
     <>
       <MapContainer
-        center={startingPosition}
+        center={position}
         zoom={13}
         maxZoom={22}
+        scrollWheelZoom={true}
         style={{ height: "100vh", width: "100vw" }}
       >
         <TileLayer
@@ -48,7 +50,11 @@ export default function StoryMap() {
             "pk.eyJ1IjoiaHVnZ2lzaCIsImEiOiJjbTAyMnE5ZjIxeWZ4MmxzaWRkdWF3bWJyIn0.6NjX4MyKkyUFO9OeMRzHZg"
           }
         />
-
+        <Marker position={position}>
+          <Popup>
+            Här är du nu: Lat: {position.lat}, Lng: {position.lng}
+          </Popup>
+        </Marker>
         <MapClickHandler />
 
         {clickedPosition && <Marker position={clickedPosition} />}
