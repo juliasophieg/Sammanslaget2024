@@ -58,6 +58,11 @@ export default function StoryMap() {
             <Popup>
               <h3>{location.title}</h3>
               <p>{location.story}</p>
+              <p>{location.category}</p>
+              <div style={{ display: "flex", gap: "3px" }}>
+                <p>{location.author}</p>
+                <p>{location.age}</p>
+              </div>
             </Popup>
           </Marker>
         ))}

@@ -25,7 +25,7 @@ export default function StoryFooter({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "red",
+            color: "black",
             zIndex: 1001, // Ensure the form is above other elements
           }}
         >
@@ -49,6 +49,7 @@ export default function StoryFooter({
               style={{
                 marginTop: "10px",
                 padding: "10px 20px",
+                marginBottom: "10px",
                 backgroundColor: "#ff5e5e",
                 color: "white",
                 border: "none",
@@ -58,6 +59,13 @@ export default function StoryFooter({
             >
               Close
             </button>
+            <StoryForm
+              setStories={setStories}
+              formData={formData}
+              setFormData={setFormData}
+              clickedPosition={clickedPosition}
+              setClickedPosition={setClickedPosition}
+            />
           </div>
         </div>
       )}
