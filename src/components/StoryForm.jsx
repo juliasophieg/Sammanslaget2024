@@ -4,21 +4,21 @@ export default function StoryForm({
   formData,
   setFormData,
   setStories,
-  clickedPosition,
-  setClickedPosition,
+  currentPosition,
 }) {
   // Handle form submission
   function handleSubmit(event) {
     event.preventDefault();
-    if (clickedPosition && formData.title && formData.story) {
+    if (currentPosition && formData.title && formData.story) {
       const newLocation = {
-        position: [clickedPosition.lat, clickedPosition.lng],
+        position: [currentPosition.lat, currentPosition.lng],
         title: formData.title,
         story: formData.story,
       };
       setStories((prevStories) => [...prevStories, newLocation]);
       setFormData({ title: "", story: "" });
-      setClickedPosition(null); // Clear the position after submission
+    } else {
+      alert("Please fill in all fields");
     }
   }
   // Handle form input changes

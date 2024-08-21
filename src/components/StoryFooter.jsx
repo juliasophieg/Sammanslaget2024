@@ -7,8 +7,7 @@ export default function StoryFooter({
   setFormData,
   stories,
   setStories,
-  clickedPosition,
-  setClickedPosition,
+  currentPosition,
 }) {
   const [formToggle, setFormToggle] = useState(false);
   return (
@@ -43,8 +42,7 @@ export default function StoryFooter({
               setStories={setStories}
               formData={formData}
               setFormData={setFormData}
-              clickedPosition={clickedPosition}
-              setClickedPosition={setClickedPosition}
+              currentPosition={currentPosition}
             />
             <button
               onClick={() => setFormToggle(false)} // Close form button

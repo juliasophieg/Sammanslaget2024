@@ -14,9 +14,7 @@ import { useMap } from "../hooks/getLocation";
 
 export default function StoryMap() {
   const { position } = useMap();
-  const [clickedPosition, setClickedPosition] = useState(null);
   const [formData, setFormData] = useState({ title: "", story: "" });
-
   const [stories, setStories] = useState(storyArray);
 
   console.log("stories:", stories);
@@ -28,15 +26,6 @@ export default function StoryMap() {
     popupAnchor: [0, -45],
   });
 
-  // Handle map click to place a marker
-  function MapClickHandler() {
-    useMapEvents({
-      click(e) {
-        setClickedPosition(e.latlng); // Store the clicked position
-      },
-    });
-    return null;
-  }
   return (
     <>
       <MapContainer
@@ -63,9 +52,6 @@ export default function StoryMap() {
             Här är du nu: Lat: {position.lat}, Lng: {position.lng}
           </Popup>
         </Marker>
-        <MapClickHandler />
-
-        {clickedPosition && <Marker position={clickedPosition} />}
 
         {stories.map((location, index) => (
           <Marker key={index} position={location.position}>
@@ -83,8 +69,7 @@ export default function StoryMap() {
         setFormData={setFormData}
         stories={stories}
         setStories={setStories}
-        clickedPosition={clickedPosition}
-        setClickedPosition={setClickedPosition}
+        currentPosition={position}
       />
     </>
   );
