@@ -34,12 +34,19 @@ export default function StoryMap() {
       <MapContainer
         center={startingPosition}
         zoom={13}
+        maxZoom={22}
         style={{ height: "100vh", width: "100vw" }}
       >
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          detectRetina={true}
+          attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+          url={`https://api.mapbox.com/styles/v1/{id}/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaHVnZ2lzaCIsImEiOiJjbTAyMnE5ZjIxeWZ4MmxzaWRkdWF3bWJyIn0.6NjX4MyKkyUFO9OeMRzHZg`}
+          id="mapbox/streets-v11"
+          tileSize={512}
+          zoomOffset={-1}
+          maxZoom={22}
+          accessToken={
+            "pk.eyJ1IjoiaHVnZ2lzaCIsImEiOiJjbTAyMnE5ZjIxeWZ4MmxzaWRkdWF3bWJyIn0.6NjX4MyKkyUFO9OeMRzHZg"
+          }
         />
 
         <MapClickHandler />
