@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StoryForm from "./StoryForm";
+import StoryFooter from "./StoryFooter";
 import { storyArray } from "../../data/stories";
 
 import {
@@ -64,15 +64,7 @@ export default function StoryMap() {
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}
-      {clickedPosition && (
-        <StoryForm
-          setStories={setStories}
-          formData={formData}
-          setFormData={setFormData}
-          clickedPosition={clickedPosition}
-          setClickedPosition={setClickedPosition}
-        />
-      )}
+      <StoryFooter />
     </>
   );
 }
