@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StoryFooter from "./StoryFooter";
-import { storyArray } from "../../data/stories";
-import {
-  MapContainer,
-  TileLayer,
-  useMapEvents,
-  Marker,
-  Popup,
-} from "react-leaflet";
+import { storyArray } from "../../data/supabase";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useMap } from "../hooks/getLocation";
 
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  "https://cpkibyqcwbytkhjcpowm.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwa2lieXFjd2J5dGtoamNwb3dtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQyNTg5NTcsImV4cCI6MjAzOTgzNDk1N30.4oxOYUovu-sUGHUcbv_yEJ8LNcvukj-8hGaqLMV2D74"
+);
+
 export default function StoryMap() {
   const { position } = useMap();
-  const [clickedPosition, setClickedPosition] = useState(null);
-  const [formData, setFormData] = useState({ title: "", story: "" });
-
-  const [stories, setStories] = useState(storyArray);
-
+  const [formData, setFormData] = useState({
+    title: "",
+    story: "",
+    category: "",
+    author: "",
+    age: "",
+  });
+  const [stories, setStories] = useState([]);
   console.log("stories:", stories);
+
+  useEffect(() => {
+    getStories();
+  }, []);
+
+  async function getStories() {
+    const { data } = await supabase.from("stories").select();
+    setStories(data);
+  }
 
   const currentLocation = new L.Icon({
     iconUrl: "/currentlocation.png",
@@ -28,15 +41,6 @@ export default function StoryMap() {
     popupAnchor: [0, -45],
   });
 
-  // Handle map click to place a marker
-  function MapClickHandler() {
-    useMapEvents({
-      click(e) {
-        setClickedPosition(e.latlng); // Store the clicked position
-      },
-    });
-    return null;
-  }
   return (
     <>
       <MapContainer
@@ -63,18 +67,34 @@ export default function StoryMap() {
             Här är du nu: Lat: {position.lat}, Lng: {position.lng}
           </Popup>
         </Marker>
-        <MapClickHandler />
 
-        {clickedPosition && <Marker position={clickedPosition} />}
+        {stories.map((story) => (
+          <Marker key={story.id} position={story.position}>
+            <Popup>
+              <h1>{story.title}</h1>
+              <p>{story.story}</p>
+              <p>{story.category}</p>
+              <div style={{ display: "flex", gap: "3px" }}>
+                <p>{story.author}</p>
+                <p>{story.age}</p>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
 
-        {stories.map((location, index) => (
+        {/* {stories.map((location, index) => (
           <Marker key={index} position={location.position}>
             <Popup>
               <h3>{location.title}</h3>
               <p>{location.story}</p>
+              <p>{location.category}</p>
+              <div style={{ display: "flex", gap: "3px" }}>
+                <p>{location.author}</p>
+                <p>{location.age}</p>
+              </div>
             </Popup>
           </Marker>
-        ))}
+        ))} */}
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}
@@ -83,8 +103,7 @@ export default function StoryMap() {
         setFormData={setFormData}
         stories={stories}
         setStories={setStories}
-        clickedPosition={clickedPosition}
-        setClickedPosition={setClickedPosition}
+        currentPosition={position}
       />
     </>
   );

@@ -5,10 +5,8 @@ import StoryForm from "./StoryForm";
 export default function StoryFooter({
   formData,
   setFormData,
-  stories,
   setStories,
-  clickedPosition,
-  setClickedPosition,
+  currentPosition,
 }) {
   const [formToggle, setFormToggle] = useState(false);
   return (
@@ -26,7 +24,7 @@ export default function StoryFooter({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "red",
+            color: "black",
             zIndex: 1001, // Ensure the form is above other elements
           }}
         >
@@ -39,18 +37,12 @@ export default function StoryFooter({
               maxWidth: "500px",
             }}
           >
-            <StoryForm
-              setStories={setStories}
-              formData={formData}
-              setFormData={setFormData}
-              clickedPosition={clickedPosition}
-              setClickedPosition={setClickedPosition}
-            />
             <button
               onClick={() => setFormToggle(false)} // Close form button
               style={{
                 marginTop: "10px",
                 padding: "10px 20px",
+                marginBottom: "10px",
                 backgroundColor: "#ff5e5e",
                 color: "white",
                 border: "none",
@@ -60,6 +52,13 @@ export default function StoryFooter({
             >
               Close
             </button>
+            <StoryForm
+              setStories={setStories}
+              formData={formData}
+              setFormData={setFormData}
+              currentPosition={currentPosition}
+              setFormToggle={setFormToggle}
+            />
           </div>
         </div>
       )}
