@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import StoryForm from "./StoryForm";
+import StoryFooter from "./StoryFooter";
 import { storyArray } from "../../data/stories";
-
 import {
   MapContainer,
   TileLayer,
@@ -10,15 +9,24 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import { useMap } from "../hooks/getLocation";
 
 export default function StoryMap() {
-  const startingPosition = [57.7067, 11.9373]; //Start position
+  const { position } = useMap();
   const [clickedPosition, setClickedPosition] = useState(null);
   const [formData, setFormData] = useState({ title: "", story: "" });
 
   const [stories, setStories] = useState(storyArray);
 
   console.log("stories:", stories);
+
+  const currentLocation = new L.Icon({
+    iconUrl: "/currentlocation.png",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
 
   // Handle map click to place a marker
   function MapClickHandler() {
@@ -32,9 +40,10 @@ export default function StoryMap() {
   return (
     <>
       <MapContainer
-        center={startingPosition}
-        zoom={13}
+        center={position}
+        zoom={14}
         maxZoom={22}
+        scrollWheelZoom={true}
         style={{ height: "100vh", width: "100vw" }}
       >
         <TileLayer
@@ -49,6 +58,11 @@ export default function StoryMap() {
           }
         />
 
+        <Marker position={position} icon={currentLocation}>
+          <Popup>
+            Här är du nu: Lat: {position.lat}, Lng: {position.lng}
+          </Popup>
+        </Marker>
         <MapClickHandler />
 
         {clickedPosition && <Marker position={clickedPosition} />}
@@ -64,15 +78,14 @@ export default function StoryMap() {
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}
-      {clickedPosition && (
-        <StoryForm
-          setStories={setStories}
-          formData={formData}
-          setFormData={setFormData}
-          clickedPosition={clickedPosition}
-          setClickedPosition={setClickedPosition}
-        />
-      )}
+      <StoryFooter
+        formData={formData}
+        setFormData={setFormData}
+        stories={stories}
+        setStories={setStories}
+        clickedPosition={clickedPosition}
+        setClickedPosition={setClickedPosition}
+      />
     </>
   );
 }

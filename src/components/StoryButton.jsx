@@ -1,11 +1,20 @@
-export default function StoryButton() {
+export default function StoryButton({ text, formToggle, setFormToggle }) {
+  const handleClick = () => {
+    if (setFormToggle) {
+      setFormToggle(!formToggle);
+    }
+  };
   return (
     <>
       <button
-        type="submit"
-        style={{ borderRadius: "100%", width: "100px", height: "100px" }}
+        onClick={handleClick}
+        style={{
+          borderRadius: "100%",
+          width: "80px",
+          height: "80px",
+        }}
       >
-        Submit
+        {text}
       </button>
     </>
   );

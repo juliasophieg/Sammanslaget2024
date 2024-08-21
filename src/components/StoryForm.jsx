@@ -21,7 +21,6 @@ export default function StoryForm({
       setClickedPosition(null); // Clear the position after submission
     }
   }
-
   // Handle form input changes
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -29,56 +28,41 @@ export default function StoryForm({
   }
   return (
     <>
-      <section
-        style={{
-          position: "fixed",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          color: "black",
-          padding: "20px",
-          backgroundColor: "transparent",
-          boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
-          zIndex: 1000,
-        }}
-      >
-        <form onSubmit={handleSubmit}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-            }}
-          >
-            <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-            />
+      <form onSubmit={handleSubmit}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+          />
 
-            <label htmlFor="story">Story:</label>
-            <textarea
-              id="story"
-              name="story"
-              value={formData.story}
-              onChange={handleInputChange}
-            />
-            <StoryButton />
-          </div>
-        </form>
-        <div>
-          <StoryButton />
+          <label htmlFor="story">Story:</label>
+          <textarea
+            id="story"
+            name="story"
+            value={formData.story}
+            onChange={handleInputChange}
+          />
+          <button
+            type="submit"
+            style={{
+              borderRadius: "100%",
+              width: "80px",
+              height: "80px",
+              color: "red",
+            }}
+          ></button>
         </div>
-        <div>
-          <StoryButton />
-        </div>
-      </section>
+      </form>
     </>
   );
 }
