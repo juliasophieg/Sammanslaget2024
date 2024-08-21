@@ -17,9 +17,16 @@ export default function StoryForm({
         author: formData.author,
         age: formData.age,
       };
-      setStories((prevStories) => [...prevStories, newLocation]);
+      setStories((prevStories) => {
+        const updatedStories = [...prevStories, newLocation];
+        // Save to localStorage immediately after update
+        localStorage.setItem("stories", JSON.stringify(updatedStories));
+        return updatedStories;
+      });
+
+      // Reset form data and close form
       setFormData({ title: "", story: "", category: "", author: "", age: "" });
-      setFormToggle(false); // Close window
+      setFormToggle(false);
     } else {
       alert("Please fill in all fields");
     }

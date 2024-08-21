@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StoryFooter from "./StoryFooter";
-import { storyArray } from "../../data/stories";
-import {
-  MapContainer,
-  TileLayer,
-  useMapEvents,
-  Marker,
-  Popup,
-} from "react-leaflet";
+// import { storyArray } from "../../data/stories";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useMap } from "../hooks/getLocation";
 
 export default function StoryMap() {
   const { position } = useMap();
-  const [formData, setFormData] = useState({ title: "", story: "" });
-  const [stories, setStories] = useState(storyArray);
+  const [formData, setFormData] = useState({
+    title: "",
+    story: "",
+    category: "",
+    author: "",
+    age: "",
+  });
+  const [stories, setStories] = useState([]);
 
-  console.log("stories:", stories);
+  useEffect(() => {
+    const savedStories = JSON.parse(localStorage.getItem("stories")) || [];
+    console.log("Saved stories:", savedStories);
+    setStories(savedStories);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("stories", JSON.stringify(stories));
+  }, [stories]);
+
+  console.log("Position", position.lat);
+  console.log("Stories", stories);
 
   const currentLocation = new L.Icon({
     iconUrl: "/currentlocation.png",
