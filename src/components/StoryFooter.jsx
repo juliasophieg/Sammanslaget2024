@@ -38,12 +38,6 @@ export default function StoryFooter({
               maxWidth: "500px",
             }}
           >
-            <StoryForm
-              setStories={setStories}
-              formData={formData}
-              setFormData={setFormData}
-              currentPosition={currentPosition}
-            />
             <button
               onClick={() => setFormToggle(false)} // Close form button
               style={{
@@ -63,8 +57,7 @@ export default function StoryFooter({
               setStories={setStories}
               formData={formData}
               setFormData={setFormData}
-              clickedPosition={clickedPosition}
-              setClickedPosition={setClickedPosition}
+              currentPosition={currentPosition}
             />
           </div>
         </div>
