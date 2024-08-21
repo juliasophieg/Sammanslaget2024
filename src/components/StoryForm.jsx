@@ -52,15 +52,17 @@ export default function StoryForm({
             value={formData.story}
             onChange={handleInputChange}
           />
-          <StoryButton />
+          <button
+            type="submit"
+            style={{
+              borderRadius: "100%",
+              width: "80px",
+              height: "80px",
+              color: "red",
+            }}
+          ></button>
         </div>
       </form>
-      <div>
-        <StoryButton />
-      </div>
-      <div>
-        <StoryButton />
-      </div>
     </>
   );
 }

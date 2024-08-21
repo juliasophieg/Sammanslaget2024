@@ -70,7 +70,14 @@ export default function StoryMap() {
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}
-      <StoryFooter />
+      <StoryFooter
+        formData={formData}
+        setFormData={setFormData}
+        stories={stories}
+        setStories={setStories}
+        clickedPosition={clickedPosition}
+        setClickedPosition={setClickedPosition}
+      />
     </>
   );
 }
