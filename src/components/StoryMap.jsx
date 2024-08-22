@@ -182,10 +182,7 @@ export default function StoryMap() {
               justifyContent: "center",
             }}
           >
-            <img
-              src="../public/Lindholmsminnen logga 1.svg"
-              style={{ width: "150px" }}
-            ></img>
+            <img src="/logo.svg" style={{ width: "150px" }}></img>
           </div>
           <button
             onClick={closePopup}
