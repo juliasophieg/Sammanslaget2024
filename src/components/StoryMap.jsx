@@ -12,11 +12,12 @@ import {
 } from "../assets/customMarkers";
 import { useMap } from "../hooks/getLocation";
 import { supabase } from "../../data/supabase";
+// import "../leafletpopup.css";
 
 export default function StoryMap() {
   const { position } = useMap();
   const [stories, setStories] = useState([]);
-  console.log("stories:", stories);
+  const [activeStory, setActiveStory] = useState(null);
 
   // Control the position
   if (!position) {
@@ -62,6 +63,11 @@ export default function StoryMap() {
     return distance <= radiusInMeters;
   };
 
+  // Function to close the custom popup
+  const closePopup = () => {
+    setActiveStory(null);
+  };
+
   return (
     <>
       <MapContainer
@@ -78,16 +84,9 @@ export default function StoryMap() {
           tileSize={512}
           zoomOffset={-1}
           maxZoom={22}
-          accessToken={
-            "pk.eyJ1IjoiaHVnZ2lzaCIsImEiOiJjbTAyMnE5ZjIxeWZ4MmxzaWRkdWF3bWJyIn0.6NjX4MyKkyUFO9OeMRzHZg"
-          }
         />
 
-        <Marker position={position} icon={currentLocation}>
-          <Popup>
-            Här är du nu: Lat: {position.lat}, Lng: {position.lng}
-          </Popup>
-        </Marker>
+        <Marker position={position} icon={currentLocation} />
 
         {/* Display stories with different icons based on distance */}
         {stories.map((story) => {
@@ -97,23 +96,14 @@ export default function StoryMap() {
               key={story.id}
               position={story.position}
               icon={isNearby ? memory : memoryGrey}
-            >
-              <Popup>
-                {isNearby ? (
-                  <>
-                    <h1>{story.title}</h1>
-                    <p>{story.story}</p>
-                    <p>{story.category}</p>
-                    <div style={{ display: "flex", gap: "3px" }}>
-                      <p>{story.author}</p>
-                      <p>{story.age}</p>
-                    </div>
-                  </>
-                ) : (
-                  <p>Befinn dig inom 50m för att uppleva detta minne.</p>
-                )}
-              </Popup>
-            </Marker>
+              eventHandlers={{
+                click: () => {
+                  if (isNearby) {
+                    setActiveStory(story); // Set the clicked story as active
+                  }
+                },
+              }}
+            />
           );
         })}
 
@@ -139,6 +129,64 @@ export default function StoryMap() {
           );
         })}
       </MapContainer>
+
+      {/* Conditionally render the custom popup */}
+      {activeStory && (
+        <section
+          style={{
+            position: "fixed",
+            top: "45%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "white",
+            borderRadius: "8px",
+            padding: "2rem",
+            boxShadow: "0 0 15px rgba(0, 0, 0, 0.2)",
+            zIndex: 1000,
+            width: "80%",
+            maxWidth: "500px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <img src="/logo.svg" style={{ width: "150px" }}></img>
+          </div>
+          <button
+            onClick={closePopup}
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              background: "transparent",
+              border: "none",
+              fontSize: "16px",
+              cursor: "pointer",
+            }}
+          >
+            ✕
+          </button>
+          <div
+            style={{
+              backgroundColor: "bisque",
+              padding: "2rem 4rem",
+            }}
+          >
+            <h1 style={{ fontSize: "36px", fontWeight: "400" }}>
+              {activeStory.title}
+            </h1>
+            <p>{activeStory.story}</p>
+            <p>{activeStory.category}</p>
+            <div style={{ display: "flex", gap: "3px" }}>
+              <p>{activeStory.author}</p>
+              <p>{activeStory.age}</p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Form at the bottom of the viewport */}
       <StoryFooter setStories={setStories} currentPosition={position} />

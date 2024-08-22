@@ -23,10 +23,7 @@ export default function IntroPage() {
               left: 0,
             }}
           >
-            <img
-              src="../public/Lindholmsminnen logga 1.svg"
-              style={{ width: "200px" }}
-            ></img>
+            <img src="/logo.svg" style={{ width: "200px" }}></img>
             <div>
               <p>
                 Upptäck Lindholmen på ett helt nytt sätt genom att dyka in i
@@ -53,10 +50,7 @@ export default function IntroPage() {
                 textAlign: "center",
               }}
             >
-              <img
-                src="../public/skapaminnealt1.svg"
-                style={{ width: "45px" }}
-              ></img>
+              <img src="/memoryicon.svg" style={{ width: "45px" }}></img>
               <p>Dela ett minne kopplat till platsen</p>
             </div>
             <div
@@ -67,7 +61,7 @@ export default function IntroPage() {
                 textAlign: "center",
               }}
             >
-              <img src="../public/Karta.svg" style={{ width: "45px" }}></img>
+              <img src="/stepsicon.svg" style={{ width: "45px" }}></img>
               <p>Sätt ditt avtryck på en plats du besökt och uppskattar</p>
             </div>
             <div
@@ -78,7 +72,7 @@ export default function IntroPage() {
                 textAlign: "center",
               }}
             >
-              <img src="../public/Meny.svg" style={{ width: "45px" }}></img>
+              <img src="/musicicon.svg" style={{ width: "45px" }}></img>
               <p>Musiksätt platsen </p>
             </div>
             <div style={{ textAlign: "center" }}>
