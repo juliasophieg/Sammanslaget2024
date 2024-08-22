@@ -27,6 +27,28 @@ export default function StoryMap() {
     setStories(data);
   }
 
+  const [steps, setSteps] = useState([]);
+
+  // Fetch the steps from the database
+  const fetchSteps = async () => {
+    const { data, error } = await supabase.from("steps").select();
+
+    if (error) {
+      console.error("Error fetching steps:", error.message);
+    } else {
+      setSteps(data);
+    }
+  };
+
+  // Fetch steps when the component starts
+  useEffect(() => {
+    fetchSteps();
+  }, []);
+
+  const formatDate = (timestamp) => {
+    return new Date(timestamp).toISOString().split("T")[0];
+  };
+
   // Custom icons for markers
   const currentLocation = new L.Icon({
     iconUrl: "/currentlocation.png",
@@ -44,6 +66,20 @@ export default function StoryMap() {
 
   const outsideRadius = new L.Icon({
     iconUrl: "/memorygrey.svg",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
+
+  const footstep = new L.Icon({
+    iconUrl: "/footstep.svg",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
+
+  const footstepGrey = new L.Icon({
+    iconUrl: "/footstepgrey.svg",
     iconSize: [38, 38],
     iconAnchor: [19, 45],
     popupAnchor: [0, -45],
@@ -104,6 +140,28 @@ export default function StoryMap() {
                   </>
                 ) : (
                   <p>Befinn dig inom 50m för att uppleva detta minne.</p>
+                )}
+              </Popup>
+            </Marker>
+          );
+        })}
+
+        {/* Display steps with different icons based on distance */}
+        {steps.map((step) => {
+          const isNearby = isWithinRadius(step.position, position, 50);
+          return (
+            <Marker
+              key={step.id}
+              position={step.position}
+              icon={isNearby ? footstep : footstepGrey}
+            >
+              <Popup>
+                {isNearby ? (
+                  <>
+                    <p>{formatDate(step.created_at)}</p>
+                  </>
+                ) : (
+                  <p>Befinn dig inom 50m för att se detta fotsteg</p>
                 )}
               </Popup>
             </Marker>

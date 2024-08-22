@@ -1,7 +1,8 @@
-export default function StepButton({ text }) {
+export default function StepButton({ text, onClick }) {
   return (
     <>
       <button
+        onClick={onClick}
         style={{
           width: "70px",
           height: "80px",
@@ -9,7 +10,7 @@ export default function StepButton({ text }) {
           padding: "0px",
         }}
       >
-        <img src="../public/Karta.svg" style={{ width: "50px" }}></img>
+        <img src="/Karta.svg" style={{ width: "50px" }} alt="Icon" />
         <div>{text}</div>
       </button>
     </>

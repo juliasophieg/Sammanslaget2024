@@ -1,7 +1,7 @@
 import { useState } from "react";
 import StoryButton from "./StoryButton";
 import StoryForm from "./StoryForm";
-import StepButton from "./StepButton";
+import FootprintButton from "./AddFootstep";
 import MusicButton from "./MusicButton";
 
 export default function StoryFooter({ setStories, currentPosition }) {
@@ -73,12 +73,14 @@ export default function StoryFooter({ setStories, currentPosition }) {
           zIndex: 1001,
         }}
       >
-        <StepButton text={"footer"} />
+        <FootprintButton text={"Fotsteg"} />
+
         <StoryButton
           text={"Dela minne"}
           formToggle={formToggle}
           setFormToggle={setFormToggle}
         />
+
         <MusicButton text={"Music"} />
       </section>
     </>
