@@ -3,6 +3,13 @@ import StoryFooter from "./StoryFooter";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import {
+  memory,
+  memoryGrey,
+  footstep,
+  footstepGrey,
+  currentLocation,
+} from "../assets/customMarkers";
 import { useMap } from "../hooks/getLocation";
 import { supabase } from "../../data/supabase";
 
@@ -49,42 +56,6 @@ export default function StoryMap() {
     return new Date(timestamp).toISOString().split("T")[0];
   };
 
-  // Custom icons for markers
-  const currentLocation = new L.Icon({
-    iconUrl: "/currentlocation.png",
-    iconSize: [38, 38],
-    iconAnchor: [19, 45],
-    popupAnchor: [0, -45],
-  });
-
-  const withinRadius = new L.Icon({
-    iconUrl: "/memory.svg",
-    iconSize: [38, 38],
-    iconAnchor: [19, 45],
-    popupAnchor: [0, -45],
-  });
-
-  const outsideRadius = new L.Icon({
-    iconUrl: "/memorygrey.svg",
-    iconSize: [38, 38],
-    iconAnchor: [19, 45],
-    popupAnchor: [0, -45],
-  });
-
-  const footstep = new L.Icon({
-    iconUrl: "/footstep.svg",
-    iconSize: [38, 38],
-    iconAnchor: [19, 45],
-    popupAnchor: [0, -45],
-  });
-
-  const footstepGrey = new L.Icon({
-    iconUrl: "/footstepgrey.svg",
-    iconSize: [38, 38],
-    iconAnchor: [19, 45],
-    popupAnchor: [0, -45],
-  });
-
   // Function to calculate distance between two points
   const isWithinRadius = (point, center, radiusInMeters) => {
     const distance = L.latLng(point).distanceTo(L.latLng(center));
@@ -125,7 +96,7 @@ export default function StoryMap() {
             <Marker
               key={story.id}
               position={story.position}
-              icon={isNearby ? withinRadius : outsideRadius}
+              icon={isNearby ? memory : memoryGrey}
             >
               <Popup>
                 {isNearby ? (
