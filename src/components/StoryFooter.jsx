@@ -2,12 +2,7 @@ import { useState } from "react";
 import StoryButton from "./StoryButton";
 import StoryForm from "./StoryForm";
 
-export default function StoryFooter({
-  formData,
-  setFormData,
-  setStories,
-  currentPosition,
-}) {
+export default function StoryFooter({ setStories, currentPosition }) {
   const [formToggle, setFormToggle] = useState(false);
   return (
     <>
@@ -25,7 +20,7 @@ export default function StoryFooter({
             alignItems: "center",
             justifyContent: "center",
             color: "black",
-            zIndex: 1001, // Ensure the form is above other elements
+            zIndex: 1001, // ensure the form is above other elements
           }}
         >
           <div
@@ -54,8 +49,6 @@ export default function StoryFooter({
             </button>
             <StoryForm
               setStories={setStories}
-              formData={formData}
-              setFormData={setFormData}
               currentPosition={currentPosition}
               setFormToggle={setFormToggle}
             />
@@ -80,12 +73,12 @@ export default function StoryFooter({
           zIndex: 1000,
         }}
       >
+        <StoryButton text={"foot"} />
         <StoryButton
           text={"Add story"}
           formToggle={formToggle}
           setFormToggle={setFormToggle}
         />
-        <StoryButton text={"foot"} />
         <StoryButton text={"three"} />
       </section>
     </>

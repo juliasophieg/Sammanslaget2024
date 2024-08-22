@@ -1,18 +1,19 @@
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  "https://cpkibyqcwbytkhjcpowm.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwa2lieXFjd2J5dGtoamNwb3dtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQyNTg5NTcsImV4cCI6MjAzOTgzNDk1N30.4oxOYUovu-sUGHUcbv_yEJ8LNcvukj-8hGaqLMV2D74"
-);
+import { supabase } from "../../data/supabase";
+import React, { useState } from "react";
 
 export default function StoryForm({
-  formData,
-  setFormData,
   setStories,
   currentPosition,
   setFormToggle,
 }) {
-  // Handle form submission
+  const [formData, setFormData] = useState({
+    title: "",
+    story: "",
+    category: "",
+    author: "",
+    age: "",
+  });
+  // handle form submission
   async function handleSubmit(event) {
     event.preventDefault();
     if (currentPosition && formData.title && formData.story) {
@@ -25,7 +26,7 @@ export default function StoryForm({
         age: formData.age,
       };
 
-      // Insert the new story into Supabase
+      // insert the new story into Supabase
       const { error } = await supabase.from("stories").insert([newStory]);
 
       if (error) {
@@ -34,18 +35,18 @@ export default function StoryForm({
         return;
       }
 
-      // Fetch updated stories after successful insertion
+      // fetch updated stories after successful insertion
       const { data } = await supabase.from("stories").select();
       setStories(data);
 
       setFormData({ title: "", story: "", category: "", author: "", age: "" });
-      setFormToggle(false); // Close form
+      setFormToggle(false); // close form
     } else {
       alert("Please fill in all fields");
     }
   }
 
-  // Handle form input changes
+  // handle form input changes
   function handleInputChange(event) {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));

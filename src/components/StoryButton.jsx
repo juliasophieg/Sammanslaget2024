@@ -10,6 +10,7 @@ export default function StoryButton({ text, formToggle, setFormToggle }) {
         onClick={handleClick}
         style={{
           borderRadius: "100%",
+          border: " 2px solid black",
           width: "80px",
           height: "80px",
         }}

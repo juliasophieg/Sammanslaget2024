@@ -1,27 +1,13 @@
 import React, { useState, useEffect } from "react";
 import StoryFooter from "./StoryFooter";
-import { storyArray } from "../../data/supabase";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useMap } from "../hooks/getLocation";
-
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  "https://cpkibyqcwbytkhjcpowm.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwa2lieXFjd2J5dGtoamNwb3dtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQyNTg5NTcsImV4cCI6MjAzOTgzNDk1N30.4oxOYUovu-sUGHUcbv_yEJ8LNcvukj-8hGaqLMV2D74"
-);
+import { supabase } from "../../data/supabase";
 
 export default function StoryMap() {
   const { position } = useMap();
-  const [formData, setFormData] = useState({
-    title: "",
-    story: "",
-    category: "",
-    author: "",
-    age: "",
-  });
   const [stories, setStories] = useState([]);
   console.log("stories:", stories);
 
@@ -81,26 +67,10 @@ export default function StoryMap() {
             </Popup>
           </Marker>
         ))}
-
-        {/* {stories.map((location, index) => (
-          <Marker key={index} position={location.position}>
-            <Popup>
-              <h3>{location.title}</h3>
-              <p>{location.story}</p>
-              <p>{location.category}</p>
-              <div style={{ display: "flex", gap: "3px" }}>
-                <p>{location.author}</p>
-                <p>{location.age}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))} */}
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}
       <StoryFooter
-        formData={formData}
-        setFormData={setFormData}
         stories={stories}
         setStories={setStories}
         currentPosition={position}
