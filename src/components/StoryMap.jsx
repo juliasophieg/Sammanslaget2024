@@ -112,11 +112,7 @@ export default function StoryMap() {
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}
-      <StoryFooter
-        stories={stories}
-        setStories={setStories}
-        currentPosition={position}
-      />
+      <StoryFooter setStories={setStories} currentPosition={position} />
     </>
   );
 }
