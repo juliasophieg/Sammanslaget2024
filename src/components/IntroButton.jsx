@@ -1,4 +1,4 @@
-export default function FormButton({ text }) {
+export default function IntroButton({ text, setIntroToggle }) {
   return (
     <>
       <button
@@ -9,6 +9,7 @@ export default function FormButton({ text }) {
           backgroundColor: "#383f7e",
           color: "white",
         }}
+        onClick={() => setIntroToggle(false)}
       >
         {text}
       </button>
