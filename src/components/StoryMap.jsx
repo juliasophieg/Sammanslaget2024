@@ -11,6 +11,13 @@ export default function StoryMap() {
   const [stories, setStories] = useState([]);
   console.log("stories:", stories);
 
+  // Control the position
+  console.log("Current Position:", position);
+
+  if (!position) {
+    console.log("No position yet");
+  }
+
   useEffect(() => {
     getStories();
   }, []);
@@ -20,12 +27,33 @@ export default function StoryMap() {
     setStories(data);
   }
 
+  // Custom icons for markers
   const currentLocation = new L.Icon({
     iconUrl: "/currentlocation.png",
     iconSize: [38, 38],
     iconAnchor: [19, 45],
     popupAnchor: [0, -45],
   });
+
+  const withinRadius = new L.Icon({
+    iconUrl: "/withinradius.png",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
+
+  const outsideRadius = new L.Icon({
+    iconUrl: "/outsideradius.png",
+    iconSize: [38, 38],
+    iconAnchor: [19, 45],
+    popupAnchor: [0, -45],
+  });
+
+  // Function to calculate distance between two points
+  const isWithinRadius = (point, center, radiusInMeters) => {
+    const distance = L.latLng(point).distanceTo(L.latLng(center));
+    return distance <= radiusInMeters;
+  };
 
   return (
     <>
@@ -54,19 +82,33 @@ export default function StoryMap() {
           </Popup>
         </Marker>
 
-        {stories.map((story) => (
-          <Marker key={story.id} position={story.position}>
-            <Popup>
-              <h1>{story.title}</h1>
-              <p>{story.story}</p>
-              <p>{story.category}</p>
-              <div style={{ display: "flex", gap: "3px" }}>
-                <p>{story.author}</p>
-                <p>{story.age}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {/* Display stories with different icons based on distance */}
+        {stories.map((story) => {
+          const isNearby = isWithinRadius(story.position, position, 50);
+          return (
+            <Marker
+              key={story.id}
+              position={story.position}
+              icon={isNearby ? withinRadius : outsideRadius}
+            >
+              <Popup>
+                {isNearby ? (
+                  <>
+                    <h1>{story.title}</h1>
+                    <p>{story.story}</p>
+                    <p>{story.category}</p>
+                    <div style={{ display: "flex", gap: "3px" }}>
+                      <p>{story.author}</p>
+                      <p>{story.age}</p>
+                    </div>
+                  </>
+                ) : (
+                  <p>Befinn dig inom 50m för att uppleva detta minne.</p>
+                )}
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
 
       {/* Form at the bottom of the viewport */}

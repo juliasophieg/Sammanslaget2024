@@ -9,7 +9,6 @@ export const useMap = () => {
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
         setPosition({ lat: coords.latitude, lng: coords.longitude });
-        console.log(coords.latitude, coords.longitude);
       },
       (blocked) => {
         if (blocked) {
