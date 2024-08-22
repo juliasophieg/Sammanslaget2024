@@ -15,7 +15,7 @@ export default function StoryButton({ text, formToggle, setFormToggle }) {
           padding: "0px",
         }}
       >
-        <img src="../public/skapaminnealt1.svg" style={{ width: "50px" }}></img>
+        <img src="/memoryicon.svg" style={{ width: "50px" }}></img>
         <div>{text}</div>
       </button>
     </>

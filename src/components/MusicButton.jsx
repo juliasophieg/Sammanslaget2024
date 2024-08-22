@@ -9,7 +9,7 @@ export default function MusicButton({ text }) {
           padding: "0px",
         }}
       >
-        <img src="../public/Meny.svg" style={{ width: "50px" }}></img>
+        <img src="musicicon.svg" style={{ width: "50px" }}></img>
         <div>{text}</div>
       </button>
     </>
