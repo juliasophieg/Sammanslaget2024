@@ -4,7 +4,11 @@ import StoryForm from "./StoryForm";
 import FootprintButton from "./AddFootstep";
 import MusicButton from "./MusicButton";
 
-export default function StoryFooter({ setStories, currentPosition }) {
+export default function StoryFooter({
+  setStories,
+  currentPosition,
+  fetchSteps,
+}) {
   const [formToggle, setFormToggle] = useState(false);
   return (
     <>
@@ -70,7 +74,7 @@ export default function StoryFooter({ setStories, currentPosition }) {
           zIndex: 1001,
         }}
       >
-        <FootprintButton text={"Fotsteg"} />
+        <FootprintButton fetchSteps={fetchSteps} text={"Fotsteg"} />
 
         <StoryButton
           text={"Dela minne"}

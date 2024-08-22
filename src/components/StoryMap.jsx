@@ -18,6 +18,7 @@ export default function StoryMap() {
   const { position } = useMap();
   const [stories, setStories] = useState([]);
   const [activeStory, setActiveStory] = useState(null);
+  const [steps, setSteps] = useState([]);
 
   // Control the position
   if (!position) {
@@ -35,23 +36,21 @@ export default function StoryMap() {
     setStories(data);
   }
 
-  const [steps, setSteps] = useState([]);
+  // Fetch steps when the component starts
+  useEffect(() => {
+    fetchSteps();
+  }, []);
 
   // Fetch the steps from the database
   const fetchSteps = async () => {
     const { data, error } = await supabase.from("steps").select();
 
     if (error) {
-      console.error("Error fetching steps:", error.message);
+      console.error("Error fetching steps");
     } else {
       setSteps(data);
     }
   };
-
-  // Fetch steps when the component starts
-  useEffect(() => {
-    fetchSteps();
-  }, []);
 
   const formatDate = (timestamp) => {
     return new Date(timestamp).toISOString().split("T")[0];
@@ -197,7 +196,11 @@ export default function StoryMap() {
       )}
 
       {/* Form at the bottom of the viewport */}
-      <StoryFooter setStories={setStories} currentPosition={position} />
+      <StoryFooter
+        setStories={setStories}
+        currentPosition={position}
+        fetchSteps={fetchSteps}
+      />
     </>
   );
 }
