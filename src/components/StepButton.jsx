@@ -2,6 +2,7 @@ export default function StepButton({ text, onClick }) {
   return (
     <>
       <button
+        className="menu-button"
         onClick={onClick}
         style={{
           width: "auto",
@@ -12,7 +13,18 @@ export default function StepButton({ text, onClick }) {
           padding: "0px",
         }}
       >
-        <img src="/stepsicon.svg" style={{ width: "32px" }} alt="Icon" />
+        <img
+          src="/stepsicon.svg"
+          className="default-icon"
+          style={{ width: "32px" }}
+          alt="Icon"
+        />
+        <img
+          src="/stepsiconorange.svg"
+          className="hover-icon"
+          style={{ width: "32px" }}
+          alt="Icon"
+        />
         <div>{text}</div>
       </button>
     </>

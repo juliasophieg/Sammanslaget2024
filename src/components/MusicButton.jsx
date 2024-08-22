@@ -2,6 +2,7 @@ export default function MusicButton({ text }) {
   return (
     <>
       <button
+        className="menu-button"
         style={{
           width: "auto",
           height: "87px",
@@ -11,7 +12,16 @@ export default function MusicButton({ text }) {
           padding: "0px",
         }}
       >
-        <img src="musicicon.svg" style={{ width: "32px" }}></img>
+        <img
+          src="/musicicon.svg"
+          className="default-icon"
+          style={{ width: "32px" }}
+        ></img>
+        <img
+          src="/musiciconorange.svg"
+          className="hover-icon"
+          style={{ width: "32px" }}
+        ></img>
         <div>{text}</div>
       </button>
     </>

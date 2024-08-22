@@ -19,11 +19,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #232323;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #232323;
 }
 
 body {
@@ -57,9 +57,35 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
 }
+
+.menu-button:hover {
+  color: #ff9a62;
+}
+
+.menu-button img.default-icon {
+  display: block;
+}
+
+.menu-button img.hover-icon {
+  display: none;
+}
+
+.menu-button:hover img.default-icon {
+  display: none;
+}
+
+.menu-button:hover img.hover-icon {
+  display: block;
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;

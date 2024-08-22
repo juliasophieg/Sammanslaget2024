@@ -7,6 +7,7 @@ export default function StoryButton({ text, formToggle, setFormToggle }) {
   return (
     <>
       <button
+        className="menu-button"
         onClick={handleClick}
         style={{
           width: "auto",
@@ -17,7 +18,16 @@ export default function StoryButton({ text, formToggle, setFormToggle }) {
           padding: "0px",
         }}
       >
-        <img src="/memoryicon.svg" style={{ width: "32px" }}></img>
+        <img
+          src="/memoryicon.svg"
+          className="default-icon"
+          style={{ width: "32px" }}
+        ></img>
+        <img
+          src="/memoryiconorange.svg"
+          className="hover-icon"
+          style={{ width: "32px" }}
+        ></img>
         <div>{text}</div>
       </button>
     </>

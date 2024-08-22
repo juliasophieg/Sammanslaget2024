@@ -76,6 +76,7 @@ export default function StoryMap() {
         maxZoom={22}
         scrollWheelZoom={true}
         style={{ height: "100vh", width: "100vw" }}
+        detectRetina={true}
       >
         <TileLayer
           attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
@@ -84,6 +85,7 @@ export default function StoryMap() {
           tileSize={512}
           zoomOffset={-1}
           maxZoom={22}
+          detectRetina={true}
         />
 
         <Marker position={position} icon={currentLocation} />
