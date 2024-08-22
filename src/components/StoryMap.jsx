@@ -36,14 +36,14 @@ export default function StoryMap() {
   });
 
   const withinRadius = new L.Icon({
-    iconUrl: "/withinradius.png",
+    iconUrl: "/memory.svg",
     iconSize: [38, 38],
     iconAnchor: [19, 45],
     popupAnchor: [0, -45],
   });
 
   const outsideRadius = new L.Icon({
-    iconUrl: "/outsideradius.png",
+    iconUrl: "/memorygrey.svg",
     iconSize: [38, 38],
     iconAnchor: [19, 45],
     popupAnchor: [0, -45],
