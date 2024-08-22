@@ -12,10 +12,10 @@ export default function StoryMap() {
   console.log("stories:", stories);
 
   // Control the position
-  console.log("Current Position:", position);
-
   if (!position) {
     console.log("No position yet");
+  } else {
+    console.log("Current Position:", position);
   }
 
   useEffect(() => {
