@@ -9,13 +9,14 @@ export default function StoryButton({ text, formToggle, setFormToggle }) {
       <button
         onClick={handleClick}
         style={{
-          borderRadius: "100%",
-          border: " 2px solid black",
-          width: "80px",
-          height: "80px",
+          width: "80x",
+          height: "80x",
+          backgroundColor: "white",
+          padding: "0px",
         }}
       >
-        {text}
+        <img src="../public/skapaminnealt1.svg" style={{ width: "50px" }}></img>
+        <div>{text}</div>
       </button>
     </>
   );
