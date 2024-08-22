@@ -54,7 +54,7 @@ export default function IntroPage() {
               }}
             >
               <img
-                src="../public/skapaminnealt1.svg"
+                src="../public/memoryicon.svg"
                 style={{ width: "45px" }}
               ></img>
               <p>Dela ett minne kopplat till platsen</p>
@@ -67,7 +67,10 @@ export default function IntroPage() {
                 textAlign: "center",
               }}
             >
-              <img src="../public/Karta.svg" style={{ width: "45px" }}></img>
+              <img
+                src="../public/stepsicon.svg"
+                style={{ width: "45px" }}
+              ></img>
               <p>Sätt ditt avtryck på en plats du besökt och uppskattar</p>
             </div>
             <div
@@ -78,7 +81,10 @@ export default function IntroPage() {
                 textAlign: "center",
               }}
             >
-              <img src="../public/Meny.svg" style={{ width: "45px" }}></img>
+              <img
+                src="../public/musicicon.svg"
+                style={{ width: "45px" }}
+              ></img>
               <p>Musiksätt platsen </p>
             </div>
             <div style={{ textAlign: "center" }}>
