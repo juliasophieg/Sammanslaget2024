@@ -20,7 +20,7 @@ export default function StoryFooter({ setStories, currentPosition }) {
             alignItems: "center",
             justifyContent: "center",
             color: "black",
-            zIndex: 1001, // ensure the form is above other elements
+            zIndex: 11, // ensure the form is above other elements
           }}
         >
           <div
@@ -70,7 +70,7 @@ export default function StoryFooter({ setStories, currentPosition }) {
           paddingBottom: "2rem",
           backgroundColor: "white",
           boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
-          zIndex: 1000,
+          zIndex: 10,
         }}
       >
         <StoryButton text={"foot"} />
