@@ -28,27 +28,45 @@ export default function StoryFooter({ setStories, currentPosition }) {
           <div
             style={{
               backgroundColor: "white",
-              padding: "20px",
+              padding: "1rem 3rem 3rem 3rem",
               borderRadius: "8px",
-              width: "80%",
+              width: "90%",
               maxWidth: "500px",
             }}
           >
             <button
               onClick={() => setFormToggle(false)} // Close form button
               style={{
-                marginTop: "10px",
-                padding: "10px 20px",
-                marginBottom: "10px",
-                backgroundColor: "#ff5e5e",
-                color: "white",
+                padding: "5px 10px",
+                marginBottom: "20px",
+                backgroundColor: "transparent",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
+                fontSize: "32px",
               }}
             >
-              Close
+              x
             </button>
+            <section style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  style={{
+                    width: "30px",
+                  }}
+                  src="/logosimple.svg"
+                ></img>
+                <h2 style={{ margin: 0, fontWeight: 400 }}>Ditt minne</h2>
+              </div>
+            </section>
+
             <StoryForm
               setStories={setStories}
               currentPosition={currentPosition}
