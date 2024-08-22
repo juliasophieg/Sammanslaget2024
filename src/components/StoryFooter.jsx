@@ -66,10 +66,7 @@ export default function StoryFooter({ setStories, currentPosition }) {
           bottom: 0,
           left: 0,
           width: "100%",
-          paddingTop: "1rem",
-          paddingBottom: "1rem",
-          backgroundColor: "white",
-          boxShadow: "0 -2px 10px rgba(0,0,0,0.1)",
+          backgroundColor: "#FEF2E3",
           zIndex: 1001,
         }}
       >

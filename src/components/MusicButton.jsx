@@ -3,13 +3,15 @@ export default function MusicButton({ text }) {
     <>
       <button
         style={{
-          width: "80px",
-          height: "80px",
-          backgroundColor: "white",
+          width: "auto",
+          height: "87px",
+          fontWeight: "bold",
+          fontSize: "14px",
+          backgroundColor: "#FEF2E3",
           padding: "0px",
         }}
       >
-        <img src="musicicon.svg" style={{ width: "50px" }}></img>
+        <img src="musicicon.svg" style={{ width: "32px" }}></img>
         <div>{text}</div>
       </button>
     </>

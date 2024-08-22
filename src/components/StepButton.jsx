@@ -4,13 +4,15 @@ export default function StepButton({ text, onClick }) {
       <button
         onClick={onClick}
         style={{
-          width: "70px",
-          height: "80px",
-          backgroundColor: "white",
+          width: "auto",
+          height: "87px",
+          fontWeight: "bold",
+          fontSize: "14px",
+          backgroundColor: "#FEF2E3",
           padding: "0px",
         }}
       >
-        <img src="/stepsicon.svg" style={{ width: "50px" }} alt="Icon" />
+        <img src="/stepsicon.svg" style={{ width: "32px" }} alt="Icon" />
         <div>{text}</div>
       </button>
     </>
