@@ -105,7 +105,13 @@ export default function StoryMap() {
                   }
                 },
               }}
-            />
+            >
+              <Popup>
+                {!isNearby && (
+                  <p>Befinn dig inom 50m för att uppleva detta minne.</p>
+                )}
+              </Popup>
+            </Marker>
           );
         })}
 
