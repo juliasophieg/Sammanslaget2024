@@ -16,6 +16,10 @@ export default function StoryForm({
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
+  if (formData.age == "") {
+    formData.age = null;
+  }
+
   useEffect(() => {
     // Check if the required fields are filled
     if (formData.title && formData.story) {
@@ -298,7 +302,6 @@ export default function StoryForm({
                   name="author"
                   value={formData.author}
                   onChange={handleInputChange}
-                  required
                   style={{ height: "2rem" }}
                 />
               </div>
@@ -324,12 +327,11 @@ export default function StoryForm({
                   </p>
                 </div>
                 <input
-                  type="text"
+                  type="number"
                   id="age"
                   name="age"
                   value={formData.age}
                   onChange={handleInputChange}
-                  required
                   style={{ height: "2rem" }}
                 />
               </div>

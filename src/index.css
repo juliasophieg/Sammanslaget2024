@@ -19,7 +19,7 @@
 
 a {
   font-weight: 500;
-  color: #232323;
+  color: #232323 !important;
   text-decoration: inherit;
 }
 a:hover {
@@ -64,6 +64,7 @@ button {
   gap: 0.25rem;
   align-items: center;
   justify-content: center;
+  color: #232323 !important;
 }
 
 .menu-button:hover {
