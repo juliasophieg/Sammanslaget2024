@@ -244,8 +244,16 @@ export default function StoryMap() {
                 alignItems: "flex-end",
               }}
             >
-              <p style={{ margin: "0" }}>{activeStory.author}</p>
-              <p style={{ margin: "0" }}>{activeStory.age} år</p>
+              {activeStory.author == "" ? (
+                <p style={{ margin: "0" }}>Anonym</p>
+              ) : (
+                <p style={{ margin: "0" }}>{activeStory.author}</p>
+              )}
+              {activeStory.age == null ? (
+                <p style={{ margin: "0" }}></p>
+              ) : (
+                <p style={{ margin: "0" }}>{activeStory.age} år</p>
+              )}{" "}
             </div>
           </div>
         </section>
