@@ -15,7 +15,7 @@ import { supabase } from "../../data/supabase";
 // import "../leafletpopup.css";
 
 export default function StoryMap() {
-  const { position } = useMap();
+  const { position, error } = useMap();
   const [stories, setStories] = useState([]);
   const [activeStory, setActiveStory] = useState(null);
   const [steps, setSteps] = useState([]);
@@ -69,6 +69,23 @@ export default function StoryMap() {
 
   return (
     <>
+      {error && (
+        <div
+          style={{
+            backgroundColor: "#F21A1A",
+            padding: "20px",
+            position: "absolute",
+            zIndex: "401",
+          }}
+        >
+          <p
+            style={{ color: "white", fontWeight: "bold", textAlign: "center" }}
+          >
+            Something went wrong: {error}
+          </p>
+        </div>
+      )}
+
       <MapContainer
         center={position}
         zoom={14}
