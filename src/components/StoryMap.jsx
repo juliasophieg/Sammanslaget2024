@@ -212,16 +212,21 @@ export default function StoryMap() {
                 color: "rgba(123, 118, 117, 1)",
               }}
             >
-              <div
-                style={{
-                  border: "1px solid rgba(123, 118, 117, 1)",
-                  margin: 0,
-                  padding: "3px 8px",
-                  borderRadius: "15px",
-                }}
-              >
-                <p style={{ margin: 0 }}>{activeStory.category}</p>
-              </div>
+              {activeStory.category == "" ? (
+                <p style={{ margin: 0 }}></p>
+              ) : (
+                <div
+                  style={{
+                    border: "1px solid rgba(123, 118, 117, 1)",
+                    margin: 0,
+                    padding: "3px 8px",
+                    borderRadius: "15px",
+                  }}
+                >
+                  <p style={{ margin: 0 }}>{activeStory.category}</p>
+                </div>
+              )}
+
               <div>{formatDate(activeStory.created_at)}</div>
             </div>
             <h1
@@ -244,8 +249,16 @@ export default function StoryMap() {
                 alignItems: "flex-end",
               }}
             >
-              <p style={{ margin: "0" }}>{activeStory.author}</p>
-              <p style={{ margin: "0" }}>{activeStory.age} år</p>
+              {activeStory.author == "" ? (
+                <p style={{ margin: "0" }}>Anonym</p>
+              ) : (
+                <p style={{ margin: "0" }}>{activeStory.author}</p>
+              )}
+              {activeStory.age == null ? (
+                <p style={{ margin: "0" }}></p>
+              ) : (
+                <p style={{ margin: "0" }}>{activeStory.age} år</p>
+              )}{" "}
             </div>
           </div>
         </section>
