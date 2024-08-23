@@ -105,7 +105,7 @@ export default function StoryForm({
                 height: "2rem",
                 border: "solid 1px black",
                 borderRadius: "5px",
-                height: "12rem",
+                height: "8rem",
               }}
             />
           </div>
@@ -328,11 +328,11 @@ export default function StoryForm({
               type="submit"
               style={{
                 borderRadius: "5px",
-                width: "60%",
-                height: "80px",
+                width: "70%",
+                height: "52px",
                 backgroundColor: "#383F7E",
                 color: "white",
-                marginTop: "2rem",
+                marginTop: "0.5rem",
                 fontWeight: "700",
               }}
             >
