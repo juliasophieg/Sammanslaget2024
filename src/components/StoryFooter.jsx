@@ -2,7 +2,6 @@ import { useState } from "react";
 import StoryButton from "./StoryButton";
 import StoryForm from "./StoryForm";
 import FootprintButton from "./AddFootstep";
-import MusicButton from "./MusicButton";
 
 export default function StoryFooter({
   setStories,
@@ -84,7 +83,8 @@ export default function StoryFooter({
           position: "fixed",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-around",
+          justifyContent: "center",
+          gap: "3rem",
           bottom: 0,
           left: 0,
           width: "100%",
@@ -100,7 +100,7 @@ export default function StoryFooter({
           setFormToggle={setFormToggle}
         />
 
-        <MusicButton text={"Music"} />
+        {/* <MusicButton text={"Music"} /> */}
       </section>
     </>
   );
