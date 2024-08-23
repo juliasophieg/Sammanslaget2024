@@ -15,9 +15,10 @@ import { supabase } from "../../data/supabase";
 // import "../leafletpopup.css";
 
 export default function StoryMap() {
-  const { position } = useMap();
+  const { position, error } = useMap();
   const [stories, setStories] = useState([]);
   const [activeStory, setActiveStory] = useState(null);
+  const [steps, setSteps] = useState([]);
 
   // Control the position
   if (!position) {
@@ -35,23 +36,21 @@ export default function StoryMap() {
     setStories(data);
   }
 
-  const [steps, setSteps] = useState([]);
+  // Fetch steps when the component starts
+  useEffect(() => {
+    fetchSteps();
+  }, []);
 
   // Fetch the steps from the database
   const fetchSteps = async () => {
     const { data, error } = await supabase.from("steps").select();
 
     if (error) {
-      console.error("Error fetching steps:", error.message);
+      console.error("Error fetching steps");
     } else {
       setSteps(data);
     }
   };
-
-  // Fetch steps when the component starts
-  useEffect(() => {
-    fetchSteps();
-  }, []);
 
   const formatDate = (timestamp) => {
     return new Date(timestamp).toISOString().split("T")[0];
@@ -70,12 +69,30 @@ export default function StoryMap() {
 
   return (
     <>
+      {error && (
+        <div
+          style={{
+            backgroundColor: "#F21A1A",
+            padding: "20px",
+            position: "absolute",
+            zIndex: "401",
+          }}
+        >
+          <p
+            style={{ color: "white", fontWeight: "bold", textAlign: "center" }}
+          >
+            Something went wrong: {error}
+          </p>
+        </div>
+      )}
+
       <MapContainer
         center={position}
         zoom={14}
         maxZoom={22}
         scrollWheelZoom={true}
         style={{ height: "100vh", width: "100vw" }}
+        detectRetina={true}
       >
         <TileLayer
           attribution='Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
@@ -84,6 +101,7 @@ export default function StoryMap() {
           tileSize={512}
           zoomOffset={-1}
           maxZoom={22}
+          detectRetina={true}
         />
 
         <Marker position={position} icon={currentLocation} />
@@ -103,7 +121,13 @@ export default function StoryMap() {
                   }
                 },
               }}
-            />
+            >
+              {!isNearby && (
+                <Popup>
+                  <p>Befinn dig inom 50m för att uppleva detta minne.</p>
+                </Popup>
+              )}
+            </Marker>
           );
         })}
 
@@ -189,7 +213,11 @@ export default function StoryMap() {
       )}
 
       {/* Form at the bottom of the viewport */}
-      <StoryFooter setStories={setStories} currentPosition={position} />
+      <StoryFooter
+        setStories={setStories}
+        currentPosition={position}
+        fetchSteps={fetchSteps}
+      />
     </>
   );
 }

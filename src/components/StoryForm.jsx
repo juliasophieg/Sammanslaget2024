@@ -58,33 +58,92 @@ export default function StoryForm({
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "10px",
+            gap: "1rem",
           }}
         >
-          <label htmlFor="title">Rubrik*</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleInputChange}
-            required
-            style={{ height: "2rem" }}
-          />
-
-          <label htmlFor="story">Minne:*</label>
-          <textarea
-            id="story"
-            name="story"
-            value={formData.story}
-            onChange={handleInputChange}
-            required
-            style={{ height: "12rem" }}
-          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+            }}
+          >
+            <label htmlFor="title" style={{ fontSize: "14px" }}>
+              Rubrik*
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              required
+              style={{
+                height: "2rem",
+                border: "solid 1px black",
+                borderRadius: "5px",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+            }}
+          >
+            <label htmlFor="story" style={{ fontSize: "14px" }}>
+              Minne:*
+            </label>
+            <textarea
+              id="story"
+              name="story"
+              value={formData.story}
+              onChange={handleInputChange}
+              required
+              style={{
+                height: "2rem",
+                border: "solid 1px black",
+                borderRadius: "5px",
+                height: "12rem",
+              }}
+            />
+          </div>
           <div>
-            <div>
-              <label htmlFor="category">Kategori:</label>
-              <div>
+            <div
+              style={{
+                marginBottom: "0.5rem",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <label htmlFor="category" style={{ fontSize: "14px" }}>
+                Stämning:
+              </label>
+              <p
+                style={{
+                  fontSize: "10px",
+                  margin: 0,
+                }}
+              >
+                Valfritt
+              </p>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                gap: "0.5rem",
+                flexWrap: "wrap",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.2rem",
+                  alignItems: "center",
+                }}
+              >
                 <input
                   type="radio"
                   id="category1"
@@ -93,52 +152,175 @@ export default function StoryForm({
                   checked={formData.category === "Ögonblick"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category1">Ögonblick</label>
+                <label htmlFor="category1" style={{ fontSize: "12px" }}>
+                  Ögonblick
+                </label>
               </div>
-              <div>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.2rem",
+                  alignItems: "center",
+                }}
+              >
                 <input
                   type="radio"
-                  id="category2"
+                  id="category4"
                   name="category"
-                  value="Exceptionellt"
-                  checked={formData.category === "Exceptionellt"}
+                  value="Spänning"
+                  checked={formData.category === "Spänning"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category2">Exceptionellt</label>
+                <label htmlFor="category4" style={{ fontSize: "12px" }}>
+                  Spänning
+                </label>
               </div>
-              <div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.2rem",
+                  alignItems: "center",
+                }}
+              >
                 <input
                   type="radio"
-                  id="category3"
+                  id="category5"
                   name="category"
-                  value="Skoj"
-                  checked={formData.category === "Skoj"}
+                  value="Kärlek"
+                  checked={formData.category === "Kärlek"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category3">Skoj</label>
+                <label htmlFor="category5" style={{ fontSize: "12px" }}>
+                  Kärlek
+                </label>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.2rem",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="radio"
+                  id="category6"
+                  name="category"
+                  value="Glädje"
+                  checked={formData.category === "Glädje"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="category6" style={{ fontSize: "12px" }}>
+                  Glädje
+                </label>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.2rem",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="radio"
+                  id="category7"
+                  name="category"
+                  value="Nostalgi"
+                  checked={formData.category === "Nostalgi"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="category7" style={{ fontSize: "12px" }}>
+                  Nostalgi
+                </label>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.2rem",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  type="radio"
+                  id="category8"
+                  name="category"
+                  value="Sorg"
+                  checked={formData.category === "Sorg"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="category8" style={{ fontSize: "12px" }}>
+                  Sorg
+                </label>
               </div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label htmlFor="author">Avsändare:</label>
-              <input
-                type="text"
-                id="author"
-                name="author"
-                value={formData.author}
-                onChange={handleInputChange}
-                required
-                style={{ height: "2rem" }}
-              />
-              <label htmlFor="age">Ålder:</label>
-              <input
-                type="text"
-                id="age"
-                name="age"
-                value={formData.age}
-                onChange={handleInputChange}
-                required
-                style={{ height: "2rem" }}
-              />
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+            >
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    marginBottom: "0.5rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <label htmlFor="author" style={{ fontSize: "14px" }}>
+                    Avsändare:
+                  </label>
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      margin: 0,
+                    }}
+                  >
+                    Valfritt
+                  </p>
+                </div>
+                <input
+                  type="text"
+                  id="author"
+                  name="author"
+                  value={formData.author}
+                  onChange={handleInputChange}
+                  required
+                  style={{ height: "2rem" }}
+                />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    marginBottom: "0.5rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <label htmlFor="age" style={{ fontSize: "14px" }}>
+                    Ålder:
+                  </label>
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      margin: 0,
+                    }}
+                  >
+                    Valfritt
+                  </p>
+                </div>
+                <input
+                  type="text"
+                  id="age"
+                  name="age"
+                  value={formData.age}
+                  onChange={handleInputChange}
+                  required
+                  style={{ height: "2rem" }}
+                />
+              </div>
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -148,9 +330,13 @@ export default function StoryForm({
                 borderRadius: "5px",
                 width: "60%",
                 height: "80px",
+                backgroundColor: "#383F7E",
+                color: "white",
+                marginTop: "2rem",
+                fontWeight: "700",
               }}
             >
-              Publicera
+              PUBLICERA
             </button>
           </div>
         </div>

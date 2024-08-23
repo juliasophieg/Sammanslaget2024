@@ -3,7 +3,7 @@ import { supabase } from "../../data/supabase";
 import { useMap } from "../hooks/getLocation";
 import StepButton from "./StepButton";
 
-const FootprintButton = () => {
+const FootprintButton = ({ fetchSteps }) => {
   const { position } = useMap();
 
   const handleAddFootprint = async () => {
@@ -21,6 +21,11 @@ const FootprintButton = () => {
 
     if (error) {
       console.error("Error adding footprint:", error.message);
+    } else {
+      console.log("Footprint added");
+      if (fetchSteps) {
+        fetchSteps();
+      }
     }
   };
 

@@ -12,7 +12,7 @@ export default function IntroPage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              backgroundColor: "#eeffff",
+              backgroundColor: "#D6F3F0",
               paddingLeft: "2rem",
               paddingRight: "2rem",
               paddingBottom: "2rem",
