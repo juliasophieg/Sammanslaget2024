@@ -1,5 +1,6 @@
 export default function StepButton({ text, onClick }) {
   return (
+    // stepbutton
     <>
       <button
         className="menu-button"

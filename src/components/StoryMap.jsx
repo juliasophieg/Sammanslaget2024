@@ -167,7 +167,8 @@ export default function StoryMap() {
             padding: "2rem",
             boxShadow: "0 0 15px rgba(0, 0, 0, 0.2)",
             zIndex: 1000,
-            width: "80%",
+            width: "90%",
+            // height: "80vh",
             maxWidth: "500px",
           }}
         >
@@ -177,7 +178,10 @@ export default function StoryMap() {
               justifyContent: "center",
             }}
           >
-            <img src="/logo.svg" style={{ width: "150px" }}></img>
+            <img
+              src="/logosimple.svg"
+              style={{ width: "30px", marginBottom: "0.5rem" }}
+            ></img>
           </div>
           <button
             onClick={closePopup}
@@ -196,17 +200,53 @@ export default function StoryMap() {
           <div
             style={{
               backgroundColor: "bisque",
-              padding: "2rem 4rem",
+              padding: "1rem 2rem",
+              fontSize: "14px",
+              borderRadius: "2%",
             }}
           >
-            <h1 style={{ fontSize: "36px", fontWeight: "400" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                fontSize: "10px",
+                color: "rgba(123, 118, 117, 1)",
+              }}
+            >
+              <div
+                style={{
+                  border: "1px solid rgba(123, 118, 117, 1)",
+                  margin: 0,
+                  padding: "3px 8px",
+                  borderRadius: "15px",
+                }}
+              >
+                <p style={{ margin: 0 }}>{activeStory.category}</p>
+              </div>
+              <div>{formatDate(activeStory.created_at)}</div>
+            </div>
+            <h1
+              style={{
+                fontSize: "24px",
+                fontWeight: "400",
+                textAlign: "center",
+              }}
+            >
               {activeStory.title}
             </h1>
             <p>{activeStory.story}</p>
-            <p>{activeStory.category}</p>
-            <div style={{ display: "flex", gap: "3px" }}>
-              <p>{activeStory.author}</p>
-              <p>{activeStory.age}</p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "3px",
+                flexDirection: "column",
+                // justifyContent: "flex-end",
+                alignItems: "flex-end",
+              }}
+            >
+              <p style={{ margin: "0" }}>{activeStory.author}</p>
+              <p style={{ margin: "0" }}>{activeStory.age} år</p>
             </div>
           </div>
         </section>
