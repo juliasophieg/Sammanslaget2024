@@ -27,15 +27,32 @@ export default function IntroPage() {
             <div>
               <p>
                 Upptäck Lindholmen på ett helt nytt sätt genom att dyka in i
-                människors minnen och upplevelser som formats här. Vår
-                interaktiva karta låter dig utforska, läsa och lyssna på
-                berättelser från de som gått samma vägar som du. Här kan du
-                också skapa och dela dina egna minnen, sätta dina fotavtryck och
-                låta musiken du väljer sätta tonen.
+                människors minnen och ta del av upplevelser som formats här. Vår
+                interaktiva karta låter dig utforska berättelser från de som
+                gått på samma gator som du. Här kan du också dela med dig av
+                dina egna Lindholmen-minnen och sätta dina egna fotavtryck.
               </p>
             </div>
-            <div>
-              <p>
+            <div
+              style={{
+                backgroundImage: "url('/cloud.svg')",
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+
+                backgroundPosition: "center",
+                // margin: "50px 0px",
+                height: "auto",
+                position: "relative",
+              }}
+            >
+              <p
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  padding: "100px 60px 130px 60px",
+                  fontSize: "12px",
+                }}
+              >
                 ”Det var i början av 90-talet när jag flyttade in i en lägenhet
                 mitt emot Aftonstjärnan. Då hade de inte visat film där på flera
                 decennier, men efter återinvigningen 94 strömmade människor dit
@@ -62,7 +79,7 @@ export default function IntroPage() {
               }}
             >
               <img src="/stepsicon.svg" style={{ width: "45px" }}></img>
-              <p>Sätt ditt avtryck på en plats du besökt och uppskattar</p>
+              <p>Sätt ditt avtryck på en plats du besökt</p>
             </div>
 
             <div style={{ textAlign: "center" }}>
@@ -73,7 +90,7 @@ export default function IntroPage() {
               </p>
             </div>
             <IntroButton
-              text={"Gå till karta"}
+              text={"GÅ TILL KARTA"}
               setIntroToggle={setIntroToggle}
             />
           </div>
