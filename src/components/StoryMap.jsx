@@ -167,7 +167,6 @@ export default function StoryMap() {
             boxShadow: "0 0 15px rgba(0, 0, 0, 0.2)",
             zIndex: 1000,
             width: "90%",
-            // height: "80vh",
             maxWidth: "500px",
           }}
         >
