@@ -12,7 +12,6 @@ import {
 } from "../assets/customMarkers";
 import { useMap } from "../hooks/getLocation";
 import { supabase } from "../../data/supabase";
-// import "../leafletpopup.css";
 
 export default function StoryMap() {
   const { position, error } = useMap();

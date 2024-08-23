@@ -1,5 +1,5 @@
 import { supabase } from "../../data/supabase";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function StoryForm({
   setStories,
@@ -13,6 +13,18 @@ export default function StoryForm({
     author: "",
     age: "",
   });
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    // Check if the required fields are filled
+    if (formData.title && formData.story) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [formData.title, formData.story]);
+
   // handle form submission
   async function handleSubmit(event) {
     event.preventDefault();
@@ -326,14 +338,16 @@ export default function StoryForm({
           <div style={{ display: "flex", justifyContent: "center" }}>
             <button
               type="submit"
+              disabled={isButtonDisabled}
               style={{
                 borderRadius: "5px",
                 width: "70%",
                 height: "52px",
-                backgroundColor: "#383F7E",
+                backgroundColor: isButtonDisabled ? "lightgray" : "#383F7E",
                 color: "white",
                 marginTop: "0.5rem",
                 fontWeight: "700",
+                cursor: isButtonDisabled ? "not-allowed" : "pointer",
               }}
             >
               PUBLICERA
