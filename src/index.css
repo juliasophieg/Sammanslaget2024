@@ -64,6 +64,7 @@ button {
   gap: 0.25rem;
   align-items: center;
   justify-content: center;
+  color: #232323 !important;
 }
 
 .menu-button:hover {
