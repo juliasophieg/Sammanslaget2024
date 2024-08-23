@@ -38,19 +38,22 @@ export default function IntroPage() {
                 backgroundImage: "url('/cloud.svg')",
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
-
                 backgroundPosition: "center",
-                // margin: "50px 0px",
+                width: "100%",
                 height: "auto",
                 position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                padding: "3rem",
               }}
             >
               <p
                 style={{
                   position: "relative",
                   zIndex: 1,
-                  padding: "100px 60px 130px 60px",
+                  padding: "2rem 0rem 5rem 0rem",
                   fontSize: "12px",
+                  maxWidth: "200px",
                 }}
               >
                 ”Det var i början av 90-talet när jag flyttade in i en lägenhet
