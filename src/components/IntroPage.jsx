@@ -64,17 +64,7 @@ export default function IntroPage() {
               <img src="/stepsicon.svg" style={{ width: "45px" }}></img>
               <p>Sätt ditt avtryck på en plats du besökt och uppskattar</p>
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <img src="/musicicon.svg" style={{ width: "45px" }}></img>
-              <p>Musiksätt platsen </p>
-            </div>
+
             <div style={{ textAlign: "center" }}>
               <p>
                 {" "}
