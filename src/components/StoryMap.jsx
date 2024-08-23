@@ -107,7 +107,7 @@ export default function StoryMap() {
 
         {/* Display stories with different icons based on distance */}
         {stories.map((story) => {
-          const isNearby = isWithinRadius(story.position, position, 500);
+          const isNearby = isWithinRadius(story.position, position, 50);
           return (
             <Marker
               key={story.id}
