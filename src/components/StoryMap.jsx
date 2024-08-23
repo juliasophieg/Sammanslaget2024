@@ -212,16 +212,21 @@ export default function StoryMap() {
                 color: "rgba(123, 118, 117, 1)",
               }}
             >
-              <div
-                style={{
-                  border: "1px solid rgba(123, 118, 117, 1)",
-                  margin: 0,
-                  padding: "3px 8px",
-                  borderRadius: "15px",
-                }}
-              >
-                <p style={{ margin: 0 }}>{activeStory.category}</p>
-              </div>
+              {activeStory.category == "" ? (
+                <p style={{ margin: 0 }}></p>
+              ) : (
+                <div
+                  style={{
+                    border: "1px solid rgba(123, 118, 117, 1)",
+                    margin: 0,
+                    padding: "3px 8px",
+                    borderRadius: "15px",
+                  }}
+                >
+                  <p style={{ margin: 0 }}>{activeStory.category}</p>
+                </div>
+              )}
+
               <div>{formatDate(activeStory.created_at)}</div>
             </div>
             <h1
