@@ -18,6 +18,7 @@ export default function StoryMap() {
   const [stories, setStories] = useState([]);
   const [activeStory, setActiveStory] = useState(null);
   const [steps, setSteps] = useState([]);
+  const [showStepPopup, setShowStepPopup] = useState(false); // Track the popup state
 
   // Control the position
   if (!position) {
@@ -64,6 +65,13 @@ export default function StoryMap() {
   // Function to close the custom popup
   const closePopup = () => {
     setActiveStory(null);
+  };
+
+  const handleStepButtonClick = () => {
+    setShowStepPopup(true); // Show the popup when the button is clicked
+    setTimeout(() => {
+      setShowStepPopup(false); // Hide the popup after 3 seconds
+    }, 3000);
   };
 
   return (
@@ -167,7 +175,6 @@ export default function StoryMap() {
             boxShadow: "0 0 15px rgba(0, 0, 0, 0.2)",
             zIndex: 1000,
             width: "90%",
-            // height: "80vh",
             maxWidth: "500px",
           }}
         >
@@ -212,21 +219,16 @@ export default function StoryMap() {
                 color: "rgba(123, 118, 117, 1)",
               }}
             >
-              {activeStory.category == "" ? (
-                <p style={{ margin: 0 }}></p>
-              ) : (
-                <div
-                  style={{
-                    border: "1px solid rgba(123, 118, 117, 1)",
-                    margin: 0,
-                    padding: "3px 8px",
-                    borderRadius: "15px",
-                  }}
-                >
-                  <p style={{ margin: 0 }}>{activeStory.category}</p>
-                </div>
-              )}
-
+              <div
+                style={{
+                  border: "1px solid rgba(123, 118, 117, 1)",
+                  margin: 0,
+                  padding: "3px 8px",
+                  borderRadius: "15px",
+                }}
+              >
+                <p style={{ margin: 0 }}>{activeStory.category}</p>
+              </div>
               <div>{formatDate(activeStory.created_at)}</div>
             </div>
             <h1
@@ -249,16 +251,8 @@ export default function StoryMap() {
                 alignItems: "flex-end",
               }}
             >
-              {activeStory.author == "" ? (
-                <p style={{ margin: "0" }}>Anonym</p>
-              ) : (
-                <p style={{ margin: "0" }}>{activeStory.author}</p>
-              )}
-              {activeStory.age == null ? (
-                <p style={{ margin: "0" }}></p>
-              ) : (
-                <p style={{ margin: "0" }}>{activeStory.age} år</p>
-              )}{" "}
+              <p style={{ margin: "0" }}>{activeStory.author}</p>
+              <p style={{ margin: "0" }}>{activeStory.age} år</p>
             </div>
           </div>
         </section>
@@ -269,6 +263,7 @@ export default function StoryMap() {
         setStories={setStories}
         currentPosition={position}
         fetchSteps={fetchSteps}
+        onStepButtonClick={handleStepButtonClick}
       />
     </>
   );

@@ -7,6 +7,7 @@ export default function StoryFooter({
   setStories,
   currentPosition,
   fetchSteps,
+  onStepButtonClick,
 }) {
   const [formToggle, setFormToggle] = useState(false);
   return (
@@ -96,7 +97,11 @@ export default function StoryFooter({
           zIndex: 1001,
         }}
       >
-        <FootprintButton fetchSteps={fetchSteps} text={"Fotsteg"} />
+        <FootprintButton
+          fetchSteps={fetchSteps}
+          text={"Fotsteg"}
+          onStepButtonClick={onStepButtonClick}
+        />
 
         <StoryButton
           text={"Dela minne"}

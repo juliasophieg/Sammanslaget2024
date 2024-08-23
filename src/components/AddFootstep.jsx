@@ -3,7 +3,7 @@ import { supabase } from "../../data/supabase";
 import { useMap } from "../hooks/getLocation";
 import StepButton from "./StepButton";
 
-const FootprintButton = ({ fetchSteps }) => {
+const FootprintButton = ({ fetchSteps, onStepButtonClick }) => {
   const { position } = useMap();
 
   const handleAddFootprint = async () => {
