@@ -68,7 +68,9 @@ export default function StoryForm({
               gap: "0.5rem",
             }}
           >
-            <label htmlFor="title">Rubrik*</label>
+            <label htmlFor="title" style={{ fontSize: "14px" }}>
+              Rubrik*
+            </label>
             <input
               type="text"
               id="title"
@@ -90,7 +92,9 @@ export default function StoryForm({
               gap: "0.5rem",
             }}
           >
-            <label htmlFor="story">Minne:*</label>
+            <label htmlFor="story" style={{ fontSize: "14px" }}>
+              Minne:*
+            </label>
             <textarea
               id="story"
               name="story"
@@ -148,7 +152,9 @@ export default function StoryForm({
                   checked={formData.category === "Ögonblick"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category1">Ögonblick</label>
+                <label htmlFor="category1" style={{ fontSize: "12px" }}>
+                  Ögonblick
+                </label>
               </div>
 
               <div
@@ -166,7 +172,9 @@ export default function StoryForm({
                   checked={formData.category === "Spänning"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category4">Spänning</label>
+                <label htmlFor="category4" style={{ fontSize: "12px" }}>
+                  Spänning
+                </label>
               </div>
               <div
                 style={{
@@ -183,7 +191,9 @@ export default function StoryForm({
                   checked={formData.category === "Kärlek"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category5">Kärlek</label>
+                <label htmlFor="category5" style={{ fontSize: "12px" }}>
+                  Kärlek
+                </label>
               </div>
               <div
                 style={{
@@ -200,7 +210,9 @@ export default function StoryForm({
                   checked={formData.category === "Glädje"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category6">Glädje</label>
+                <label htmlFor="category6" style={{ fontSize: "12px" }}>
+                  Glädje
+                </label>
               </div>
               <div
                 style={{
@@ -217,7 +229,9 @@ export default function StoryForm({
                   checked={formData.category === "Nostalgi"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category7">Nostalgi</label>
+                <label htmlFor="category7" style={{ fontSize: "12px" }}>
+                  Nostalgi
+                </label>
               </div>
               <div
                 style={{
@@ -234,7 +248,9 @@ export default function StoryForm({
                   checked={formData.category === "Sorg"}
                   onChange={handleInputChange}
                 />
-                <label htmlFor="category8">Sorg</label>
+                <label htmlFor="category8" style={{ fontSize: "12px" }}>
+                  Sorg
+                </label>
               </div>
             </div>
           </div>
@@ -252,7 +268,9 @@ export default function StoryForm({
                     alignItems: "center",
                   }}
                 >
-                  <label htmlFor="author">Avsändare:</label>
+                  <label htmlFor="author" style={{ fontSize: "14px" }}>
+                    Avsändare:
+                  </label>
                   <p
                     style={{
                       fontSize: "10px",
@@ -281,7 +299,9 @@ export default function StoryForm({
                     alignItems: "center",
                   }}
                 >
-                  <label htmlFor="age">Ålder:</label>
+                  <label htmlFor="age" style={{ fontSize: "14px" }}>
+                    Ålder:
+                  </label>
                   <p
                     style={{
                       fontSize: "10px",
