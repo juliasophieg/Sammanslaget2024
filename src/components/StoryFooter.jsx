@@ -32,7 +32,7 @@ export default function StoryFooter({
           <div
             style={{
               backgroundColor: "white",
-              padding: "1rem 3rem 3rem 3rem",
+              padding: "1rem 2rem",
               borderRadius: "8px",
               width: "90%",
               maxWidth: "500px",
@@ -41,13 +41,16 @@ export default function StoryFooter({
             <button
               onClick={() => setFormToggle(false)} // Close form button
               style={{
-                padding: "5px 10px",
-                marginBottom: "20px",
+                position: "absolute",
+                right: "40px",
+                top: "20px",
+                padding: "0",
                 backgroundColor: "transparent",
                 border: "none",
                 borderRadius: "4px",
                 cursor: "pointer",
                 fontSize: "32px",
+                opacity: "0.3",
               }}
             >
               x
@@ -59,6 +62,7 @@ export default function StoryFooter({
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
+                  padding: "1rem",
                 }}
               >
                 <img
